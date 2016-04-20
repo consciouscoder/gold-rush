@@ -7,6 +7,7 @@ angular.module('myApp',[])
           
             
             $scope.pointArray = []
+            var removedMarker = false
             
             
 
@@ -20,25 +21,36 @@ angular.module('myApp',[])
                 var offsetY = event.offsetY;
             
                 // you have lots of things to try here, not sure what you want to calculate
-                console.log(x, y) //offsetX, offsetY);      
+                //console.log(x, y) //offsetX, offsetY);    
+                console.log(event)
                 
                     // var d = document.getElementById('markerDiv');
                     //     d.style.left = x
                     //     d.style.top = y
                 
-                $scope.myStyle = {
-                    'display': "inherit",
-                    'left': x + "px",
-                    'top': y + "px"
+                // $scope.myStyle = {
+                //     'display': "inherit",
+                //     'left': x + "px",
+                //     'top': y + "px"
+                // }
+                if (event.altKey === true) {
+                    console.log('ALT KEY PRESSED -- FOR NOTE')
+                    removedMarker = true
                 }
                 
-                $scope.pointArray.push({
-                    x: x,
-                    y: y
-                })
+                if (removedMarker === false) {
+                    $scope.pointArray.push({
+                        x: x,
+                        y: y
+                    })
+                
+                } else {
+                  console.log('skipped placing marker')    
+                  removedMarker = false
+                }
                 
                 
-                console.log($scope.pointArray)
+                //console.log($scope.pointArray)
 
             }
             
@@ -47,15 +59,18 @@ angular.module('myApp',[])
                 document.write(markerUrl)
             }
             
+            $scope.removeMarker = function (index) {
+              if (event.altKey === false) {             
+                console.log('hiding marker')
+                $scope.pointArray.splice(index, 1)
+                console.log('splicing ID: ' + index)
+                removedMarker = true
+                // $scope.myStyle = { display: 'none' }
+              }
+            }
+            
     })
     
-        .controller('spanCntl', function($scope){
-            
-            $scope.pos.left = x
-            $scope.pos.top = y
-        })
-
-
 
 
 

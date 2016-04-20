@@ -1,5 +1,5 @@
 <!doctype html>
-.
+
 <html ng-app="myApp">
 <head>
     <meta charset=utf-8>
@@ -10,7 +10,7 @@
     <body ng-controller="myController">
         
         <div ng-click="doClick($event)" id="wrapper">
-            <div ng-repeat="point in pointArray" id="markerDiv" ng-style="myStyle" class="marker black">1</div>
+            <div ng-repeat="point in pointArray" ng-click="removeMarker($index)" id="{{$index}}" style="display:inherit; top:{{point.y + 'px'}}; left:{{point.x + 'px'}}" class="marker black">{{ $index + 1 }}</div>
             <img src="https://github.com/RefactorU/exercise-starters/blob/master/client-js/gold-rush/topo-co.jpg?raw=true">
             <div id="map"></div>
         </div>

@@ -5,7 +5,7 @@
 
 #wrapper { position: relative; z-index: -100; width: 100%; }
 #wrapper img, #wrapper .marker { position: absolute; }
-#wrapper img { top: 0; left: 0; }
+#wrapper img { top: 0; left: 0; width: 100%;}
 
 .marker {
     width: 27px;
